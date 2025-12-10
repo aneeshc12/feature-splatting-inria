@@ -49,8 +49,8 @@ class ModelParams(ParamGroup):
         self.sh_degree = 3
         self.distill_feature_dim = 32
         self.feature_type = "clip_dino"  # clip_dino, clip_part
-        self._source_path = ""
-        self._model_path = ""
+        self._source_path = ""      # -s
+        self._model_path = ""      # -m
         self._images = "images"
         self._resolution = -1
         self._white_background = False

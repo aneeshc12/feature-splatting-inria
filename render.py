@@ -184,8 +184,13 @@ def render_interpolating_trajectory(args, model_path, iteration, views, gaussian
 def render_sets(dataset : ModelParams, iteration : int, pipeline : PipelineParams, camera_slerp_list : list,
                 with_feat : bool, clip_feat : bool, dino_feat : bool, with_editing : bool, text_query : str,
                 neg_text_query : str, step_size : int, args):
+    
+    print(dataset)
+
     gaussians = GaussianModel(dataset.sh_degree, dataset.distill_feature_dim)
     scene = Scene(dataset, gaussians, load_iteration=iteration, shuffle=False)
+
+    import pdb; pdb.set_trace()
 
     bg_color = [1,1,1] if dataset.white_background else [0, 0, 0]
     background = torch.tensor(bg_color, dtype=torch.float32, device="cuda")
