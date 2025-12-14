@@ -195,6 +195,8 @@ def select_gs_for_phys(dataset : ModelParams,
         print(bcolors.WARNING + "Selecting interior of the object. Check if it includes any noises" + bcolors.ENDC)
         input("Press enter to continue")
         obj_idx = positive_obj_idx
+
+        # import pdb; pdb.set_trace()
         while True:
             positive_obj_idx = clip_segmeter.ground_bbox_filter(bounded_xyz_np,
                                                                 obj_idx,
@@ -366,7 +368,7 @@ def select_gs_for_phys(dataset : ModelParams,
         ]
     }
 
-    editing_modifier_save_path = os.path.join(ply_editing_dir, "editing_modifier.pkl")
+    editing_modifier_save_path = os.path.join(ply_editing_dir, args.object_name + "_editing_modifier.pkl")
     with open(editing_modifier_save_path, "wb") as f:
         pickle.dump(editing_modifier_dict, f)
 
@@ -374,6 +376,7 @@ if __name__ == "__main__":
     # Set up command line argument parser
     parser = ArgumentParser(description="Testing script parameters")
     model = ModelParams(parser, sentinel=True)
+    parser.add_argument("--object_name", type=str)
     parser.add_argument("--iteration", default=-1, type=int)
     parser.add_argument("--fg_obj_list", default="vase,flowers,plants", type=str)
     parser.add_argument("--bg_obj_list", default="tabletop,wooden table", type=str)
